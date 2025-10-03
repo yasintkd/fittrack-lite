@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tekhan Taekwondo Akademi - Eğitmenler</title>
+
+    <style>
+    body {
+        font-family: sans-serif;
+        padding: 12px;
+        margin: 0;
+        background-color: #f9f9f9;
+    }
+
+    h1, h2, h3 {
+        font-size: 1.2em;
+        margin-top: 20px;
+    }
+
+    ul {
+        padding-left: 20px;
+    }
+
+    li {
+        margin-bottom: 10px;
+        line-height: 1.4;
+    }
+
+    a {
+        display: inline-block;
+        margin-right: 10px;
+        color: #0077cc;
+        text-decoration: none;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+    button {
+        padding: 8px 12px;
+        font-size: 1em;
+        margin-top: 10px;
+    }
+
+    input, textarea, select {
+        width: 100%;
+        max-width: 400px;
+        padding: 8px;
+        margin-bottom: 12px;
+        font-size: 1em;
+    }
+    </style>
+</head>
+<body>
+    <h1>Eğitmen Ekle</h1>
+    <form action="/add_trainer" method="POST">
+    <input type="text" name="name" placeholder="Ad Soyad"><br>
+    <input type="email" name="email" placeholder="Email"><br>
+    <input type="text" name="phone" placeholder="Telefon"><br>
+    <input type="number" step="0.01" name="share_percent" placeholder="Pay (%)"><br>
+    <button type="submit">Kaydet</button>
+    </form>
+
+    <h2>Eğitmen Listesi</h2>
+<ul>
+    {% for trainer in trainers %}
+        <li>
+            <a href="/trainer/{{ trainer['id'] }}">{{ trainer['name'] }}</a> - {{ trainer['email'] }} - {{ trainer['phone'] }}
+
+            <!-- Düzenle ve Sil Butonları -->
+            <a href="/edit_trainer/{{ trainer['id'] }}">Düzenle</a>
+            <form action="/delete_trainer/{{ trainer['id'] }}" method="POST" style="display:inline;">
+                <button type="submit">Sil</button>
+            </form>
+        </li>
+    {% endfor %}
+</ul>
+</body>
+</html>

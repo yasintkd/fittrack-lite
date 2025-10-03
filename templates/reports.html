@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sayfa Başlığı</title>
+
+    <style>
+        body {
+            font-family: sans-serif;
+            padding: 12px;
+            margin: 0;
+            background-color: #f9f9f9;
+        }
+
+        h1, h2, h3 {
+            font-size: 1.2em;
+            margin-top: 20px;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+
+        a {
+            display: inline-block;
+            margin-right: 10px;
+            color: #0077cc;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        button {
+            padding: 8px 12px;
+            font-size: 1em;
+            margin-top: 10px;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            max-width: 400px;
+            padding: 8px;
+            margin-bottom: 12px;
+            font-size: 1em;
+        }
+    </style>
+</head>
+
+
+
+<h1>{{ current_month }} Ayı Raporu</h1>
+
+<h2>Toplam Gelir: {{ total_income }} ₺</h2>
+<h2>Salon Payı: {{ salon_total }} ₺</h2>
+
+<h2>Eğitmen Kazançları</h2>
+<ul>
+    {% for name, amount in trainer_totals.items() %}
+        <li>{{ name }} → {{ amount }} ₺</li>
+    {% endfor %}
+</ul>
+
+<h2>Bu Ayki Ödemeler</h2>
+<ul>
+    {% for p in payments %}
+        <li>
+            {{ p['member_name'] }} → {{ p['amount'] }} ₺  
+            → Sınıf: {{ p['class_name'] or 'Belirsiz' }}  
+            → Eğitmen: {{ p['trainer_name'] or 'Yok' }}  
+            → Tarih: {{ p['payment_date'] }}  
+            {% if p['note'] %} → Not: {{ p['note'] }} {% endif %}
+        </li>
+    {% endfor %}
+</ul>

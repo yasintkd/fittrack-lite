@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ member['name'] }} - Öğrenci Bilgileri</title>
+
+    <style>
+    body {
+        font-family: sans-serif;
+        padding: 12px;
+        margin: 0;
+        background-color: #f9f9f9;
+    }
+
+    h1, h2, h3 {
+        font-size: 1.2em;
+        margin-top: 20px;
+    }
+
+    ul {
+        padding-left: 20px;
+    }
+
+    li {
+        margin-bottom: 10px;
+        line-height: 1.4;
+    }
+
+    a {
+        display: inline-block;
+        margin-right: 10px;
+        color: #0077cc;
+        text-decoration: none;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+    button {
+        padding: 8px 12px;
+        font-size: 1em;
+        margin-top: 10px;
+    }
+
+    input, textarea, select {
+        width: 100%;
+        max-width: 400px;
+        padding: 8px;
+        margin-bottom: 12px;
+        font-size: 1em;
+    }
+    </style>
+    
+</head>
+<body>
+    <h1>{{ member['name'] }} - Detaylı Bilgiler</h1>
+    <ul>
+        <li>Doğum Tarihi: {{ member['birth_date'] }}</li>
+        <li>Yaş: {{ member['birth_date'] | calculate_age }}</li>
+        <li>Boy: {{ member['height'] }} cm</li>
+        <li>Kilo: {{ member['weight'] }} kg</li>
+        <li>Siklet: {{ member['weight_category'] }}</li>
+        <li>Kuşak: {{ member['belt_level'] }}</li>
+        <li>Veli: {{ member['parent_name'] }} - {{ member['parent_phone'] }}</li>
+        <li>Email: {{ member['email'] }}</li>
+        <li>Katıldığı Sınıflar:
+            <ul>
+                {% for cls in enrollments %}
+                    <li>{{ cls['name'] }}</li>
+                {% endfor %}
+            </ul>
+        </li>
+    </ul>
+
+    <a href="/add_payment/{{ member['id'] }}">Ödeme Ekle</a>
+    {% if renew_suggestion %}
+    <p style="color:red;"><strong>{{ renew_suggestion }}</strong></p>
+{% endif %}
+
+    <h2>Abonelik Geçmişi</h2>
+<ul>
+    {% for p in payments %}
+        <li>
+            {{ p['amount'] }} ₺  
+            → {{ p['start_date'] }} - {{ p['end_date'] }}  
+            → <a href="/edit_payment/{{ p['id'] }}">✏️ Düzenle</a>  
+            → <a href="/delete_payment/{{ p['id'] }}" onclick="return confirm('Silmek istediğine emin misin?')">🗑️ Sil</a>
+        </li>
+    {% endfor %}
+</ul>
+</body>
+</html>

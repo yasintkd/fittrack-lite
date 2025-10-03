@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sayfa Başlığı</title>
+
+    <style>
+        body {
+            font-family: sans-serif;
+            padding: 12px;
+            margin: 0;
+            background-color: #f9f9f9;
+        }
+
+        h1, h2, h3 {
+            font-size: 1.2em;
+            margin-top: 20px;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+
+        a {
+            display: inline-block;
+            margin-right: 10px;
+            color: #0077cc;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        button {
+            padding: 8px 12px;
+            font-size: 1em;
+            margin-top: 10px;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            max-width: 400px;
+            padding: 8px;
+            margin-bottom: 12px;
+            font-size: 1em;
+        }
+    </style>
+</head>
+
+
+
+
+<h1>📅 Ay Bazlı Ödeme Raporu</h1>
+
+<h2>Toplamlar (Ay Ay)</h2>
+<ul>
+    {% for m in monthly_totals %}
+        <li>{{ m['month'] }} → {{ m['total'] }} ₺</li>
+    {% endfor %}
+</ul>
+
+<h2>🎖️ Kuşak Bazlı Toplamlar</h2>
+<ul>
+    {% for b in belt_totals %}
+        <li>{{ b['belt_level'] }} → {{ b['total'] }} ₺</li>
+    {% endfor %}
+</ul>
+
+<h2>👥 Sınıf Bazlı Toplamlar</h2>
+<ul>
+    {% for c in class_totals %}
+        <li>{{ c['name'] }} → {{ c['total'] }} ₺</li>
+    {% endfor %}
+</ul>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sayfa Başlığı</title>
+
+    <style>
+        body {
+            font-family: sans-serif;
+            padding: 12px;
+            margin: 0;
+            background-color: #f9f9f9;
+        }
+
+        h1, h2, h3 {
+            font-size: 1.2em;
+            margin-top: 20px;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+
+        a {
+            display: inline-block;
+            margin-right: 10px;
+            color: #0077cc;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        button {
+            padding: 8px 12px;
+            font-size: 1em;
+            margin-top: 10px;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            max-width: 400px;
+            padding: 8px;
+            margin-bottom: 12px;
+            font-size: 1em;
+        }
+    </style>
+</head>
+
+
+<h1>{{ trainer['name'] }} - Eğitmen Detayları</h1>
+<p>Email: {{ trainer['email'] }}</p>
+<p>Telefon: {{ trainer['phone'] }}</p>
+
+<h2>Yönettiği Sınıflar</h2>
+<ul>
+    {% for stat in class_stats %}
+        <li>{{ stat['class_name'] }} → {{ stat['student_count'] }} öğrenci</li>
+    {% endfor %}
+</ul>

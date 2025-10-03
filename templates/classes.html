@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tekhan Taekwondo Akademi - Sınıflar</title>
+
+    <style>
+    body {
+        font-family: sans-serif;
+        padding: 12px;
+        margin: 0;
+        background-color: #f9f9f9;
+    }
+
+    h1, h2, h3 {
+        font-size: 1.2em;
+        margin-top: 20px;
+    }
+
+    ul {
+        padding-left: 20px;
+    }
+
+    li {
+        margin-bottom: 10px;
+        line-height: 1.4;
+    }
+
+    a {
+        display: inline-block;
+        margin-right: 10px;
+        color: #0077cc;
+        text-decoration: none;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+    button {
+        padding: 8px 12px;
+        font-size: 1em;
+        margin-top: 10px;
+    }
+
+    input, textarea, select {
+        width: 100%;
+        max-width: 400px;
+        padding: 8px;
+        margin-bottom: 12px;
+        font-size: 1em;
+    }
+    </style>
+</head>
+<body>
+    <h1>Sınıf Ekle</h1>
+    <form action="/add_class" method="POST">
+        <input type="text" name="name" placeholder="Sınıf Adı" required><br>
+        <input type="text" name="description" placeholder="Açıklama"><br>
+        <input type="text" name="day" placeholder="Gün (örnek: Pazartesi)"><br>
+        <input type="text" name="time" placeholder="Saat (örnek: 18:00)"><br>
+
+        <select name="trainer_id">
+            <option value="">Eğitmen Seç</option>
+            {% for trainer in trainers %}
+                <option value="{{ trainer['id'] }}">{{ trainer['name'] }}</option>
+            {% endfor %}
+        </select><br>
+
+        <button type="submit">Kaydet</button>
+    </form>
+
+    <h2>Sınıf Listesi</h2>
+<ul>
+    {% for cls in classes %}
+        <li>
+            <a href="/class/{{ cls['id'] }}">{{ cls['name'] }}</a> - {{ cls['description'] }} - {{ cls['day'] }} - {{ cls['time'] }}
+            {% if cls['trainer_name'] %}
+                → Eğitmen: {{ cls['trainer_name'] }}
+            {% else %}
+                → Eğitmen: Yok
+            {% endif %}
+
+            <!-- Düzenle ve Sil Butonları -->
+            <a href="/edit_class/{{ cls['id'] }}">Düzenle</a>
+            <form action="/delete_class/{{ cls['id'] }}" method="POST" style="display:inline;">
+                <button type="submit">Sil</button>
+            </form>
+        </li>
+    {% endfor %}
+</ul>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Performans Paneli</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            padding: 12px;
+            margin: 0;
+            background-color: #f9f9f9;
+        }
+
+        h1, h2 {
+            font-size: 1.3em;
+            margin-top: 20px;
+            color: #333;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 10px;
+            color: #0077cc;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .section {
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>🏆 Performans Paneli</h1>
+
+    <div class="section">
+        <h2>En Aktif Öğrenciler</h2>
+        <ul>
+            {% for m in top_members %}
+                <li>{{ m['name'] }} → {{ m['total'] }} ₺</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>En Verimli Sınıflar</h2>
+        <ul>
+            {% for c in top_classes %}
+                <li>{{ c['name'] }} → {{ c['total'] }} ₺</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>En Çok Kazanan Eğitmenler</h2>
+        <ul>
+            {% for t in top_trainers %}
+                <li>{{ t['name'] }} → {{ t['income'] }} ₺</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <a href="/dashboard">← Geri Dön</a>
+
+</body>
+</html>

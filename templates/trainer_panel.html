@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Eğitmen Paneli</title>
+
+    <style>
+        body {
+            font-family: sans-serif;
+            padding: 40px 20px;
+            margin: 0;
+            background-color: #f9f9f9;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1, h2, h3 {
+            font-size: 1.2em;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        ul {
+            padding-left: 20px;
+            max-width: 500px;
+            width: 100%;
+        }
+
+        li {
+            margin-bottom: 10px;
+            line-height: 1.4;
+            background-color: #fff;
+            padding: 10px;
+            border-radius: 6px;
+            box-shadow: 0 0 5px rgba(0,0,0,0.05);
+        }
+
+        button {
+            padding: 10px;
+            font-size: 1em;
+            margin-top: 20px;
+            width: 100%;
+            max-width: 400px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            max-width: 400px;
+            padding: 8px;
+            margin-bottom: 12px;
+            font-size: 1em;
+        }
+
+        .card {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .section {
+            width: 100%;
+            max-width: 600px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h1>{{ trainer['name'] }} Eğitmen Paneli</h1>
+        <h2>{{ current_month }} Ayı Geliri: {{ trainer_income }} ₺</h2>
+    </div>
+
+    <div class="section">
+        <h3>📚 Sınıflarım</h3>
+        <ul>
+            {% for c in classes %}
+                <li>{{ c['name'] }} – {{ c['schedule'] }}</li>
+            {% else %}
+                <li>Henüz sınıf tanımlı değil.</li>
+            {% endfor %}
+        </ul>
+
+        <h3>👥 Üyelerim</h3>
+        <ul>
+            {% for member in members %}
+                <li>{{ member['name'] }}</li>
+            {% else %}
+                <li>Henüz üye bulunamadı.</li>
+            {% endfor %}
+        </ul>
+
+        <h3>💳 Bu Ayki Ödemeler</h3>
+        <ul>
+            {% for p in payments %}
+                <li>
+                    {{ p['member_name'] }} → {{ p['amount'] }} ₺  
+                    → Sınıf: {{ p['class_name'] }}  
+                    → Tarih: {{ p['payment_date'] }}  
+                    → {% if p['status'] == 'paid' %}✅ Ödendi{% else %}❌ Bekliyor{% endif %}
+                </li>
+            {% else %}
+                <li>Henüz ödeme kaydı yok.</li>
+            {% endfor %}
+        </ul>
+
+        <form action="/logout">
+            <button type="submit">🚪 Çıkış Yap</button>
+        </form>
+    </div>
+
+</body>
+</html>

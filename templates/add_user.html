@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+    <title>Yeni Kullanıcı Ekle</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+
+        input, select {
+            width: 100%;
+            max-width: 400px;
+            padding: 10px;
+            margin-bottom: 12px;
+            font-size: 1em;
+        }
+
+        button {
+            padding: 10px 16px;
+            font-size: 1em;
+        }
+
+        .message {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>👤 Yeni Kullanıcı Ekle</h1>
+    <form method="post">
+    <input name="username" placeholder="Kullanıcı Adı" required>
+    <input name="password" type="password" placeholder="Şifre" required>
+    <select name="role" required>
+        <option value="admin">Admin</option>
+        <option value="trainer">Eğitmen</option>
+    </select>
+    <button type="submit">Kaydet</button>
+</form>
+
+    {% if message %}
+        <div class="message">{{ message }}</div>
+    {% endif %}
+
+</body>
+</html>

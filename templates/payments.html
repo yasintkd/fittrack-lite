@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tekhan Taekwondo Akademi - Ödemeler</title>
+    <style>
+    body {
+        font-family: sans-serif;
+        padding: 12px;
+        margin: 0;
+        background-color: #f9f9f9;
+    }
+
+    h1, h2, h3 {
+        font-size: 1.2em;
+        margin-top: 20px;
+    }
+
+    ul {
+        padding-left: 20px;
+    }
+
+    li {
+        margin-bottom: 10px;
+        line-height: 1.4;
+    }
+
+    a {
+        display: inline-block;
+        margin-right: 10px;
+        color: #0077cc;
+        text-decoration: none;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+    button {
+        padding: 8px 12px;
+        font-size: 1em;
+        margin-top: 10px;
+    }
+
+    input, textarea, select {
+        width: 100%;
+        max-width: 400px;
+        padding: 8px;
+        margin-bottom: 12px;
+        font-size: 1em;
+    }
+    </style>
+</head>
+<body>
+    <h1>Ödeme Ekle</h1>
+    <form action="/add_payment" method="POST">
+        <select name="member_id">
+            {% for member in members %}
+                <option value="{{ member['id'] }}">{{ member['name'] }}</option>
+            {% endfor %}
+        </select><br>
+        <input type="number" step="0.01" name="amount" placeholder="Tutar"><br>
+        <input type="date" name="date"><br>
+        <input type="text" name="note" placeholder="Açıklama"><br>
+        <button type="submit">Kaydet</button>
+    </form>
+
+    <h2>Ödeme Listesi</h2>
+    <ul>
+        {% for p in payments %}
+            <li>{{ p['member_name'] }} → {{ p['amount'] }}₺ - {{ p['date'] }} - {{ p['note'] }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

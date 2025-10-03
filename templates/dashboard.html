@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>TEKHAN TAEKWONDO AKADEMİ - Admin Panel</title>
+
+    <style>
+    body {
+        font-family: sans-serif;
+        margin: 0;
+        padding: 40px 20px;
+        background-color: #f9f9f9;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    h1, h2, h3 {
+        font-size: 1.2em;
+        margin-top: 20px;
+        text-align: center;
+    }
+
+    ul {
+        padding-left: 20px;
+    }
+
+    li {
+        margin-bottom: 10px;
+        line-height: 1.4;
+    }
+
+    a {
+        display: inline-block;
+        margin-right: 10px;
+        color: #0077cc;
+        text-decoration: none;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+    form {
+        margin-bottom: 12px;
+        width: 100%;
+        max-width: 400px;
+    }
+
+    input, textarea, select {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 12px;
+        font-size: 1em;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    button {
+        width: 100%;
+        padding: 10px;
+        font-size: 1em;
+        background-color: #FFD700;
+        color: black;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+        background-color: #0056b3;
+        color: white;
+    }
+</style>
+</head>
+<body>
+    <h1>🏋️‍♂️ TEKHAN TAEKWONDO AKADEMİ YÖNETİM PANELİ</h1>
+    
+        <form action="/add_user">
+             <button type="submit">➕ Yeni Kullanıcı Ekle</button>
+        </form>
+
+        <form action="/members">
+             <button type="submit">👥 Üye Listesi</button>
+        </form>
+
+        <form action="/classes">
+             <button type="submit">🏫 Sınıf Yönetimi</button>
+        </form>
+
+        <form action="/trainers">
+            <button type="submit">🧑‍🏫 Eğitmen Yönetimi</button>
+        </form>
+
+        <form action="/enrollments">
+            <button type="submit">📝 Katılım Takibi</button>
+        </form>
+
+        <form action="/search_members">
+            <button type="submit">🔍 Üye Arama</button>
+        </form>
+
+        <form action="/payments">
+            <button type="submit">💳 Ödeme Takibi</button>
+        </form>
+
+        <form action="/reports">
+            <button type="submit">📈 Aylık Raporlar</button>
+        </form>
+
+        <form action="/expiring">
+            <button type="submit">⏳ Yakında Biten Abonelikler</button>
+        </form>
+
+        <form action="/monthly_report">
+            <button type="submit">📅 Ay Bazlı Raporlama</button>
+        </form>
+
+        <form action="/trainer/1">
+            <button type="submit">🧑‍🏫 Eğitmen Paneli</button>
+        </form>
+
+        <form action="/performance">
+            <button type="submit">📊 Performans Analizi</button>
+        </form>
+
+        <form action="/add_user">
+            <button type="submit">➕ Yeni Kullanıcı Ekle</button>
+        </form>
+
+        <form action="/logout">
+            <button type="submit">🚪 Çıkış Yap</button>
+        </form>
+
+   
+</body>
+</html>

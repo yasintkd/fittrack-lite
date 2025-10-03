@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tekhan Taekwondo Akademi - Üye Listesi</title>
+
+    <style>
+    body {
+        font-family: sans-serif;
+        padding: 12px;
+        margin: 0;
+        background-color: #f9f9f9;
+    }
+
+    h1, h2, h3 {
+        font-size: 1.2em;
+        margin-top: 20px;
+    }
+
+    ul {
+        padding-left: 20px;
+    }
+
+    li {
+        margin-bottom: 10px;
+        line-height: 1.4;
+    }
+
+    a {
+        display: inline-block;
+        margin-right: 10px;
+        color: #0077cc;
+        text-decoration: none;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+    button {
+        padding: 8px 12px;
+        font-size: 1em;
+        margin-top: 10px;
+    }
+
+    input, textarea, select {
+        width: 100%;
+        max-width: 400px;
+        padding: 8px;
+        margin-bottom: 12px;
+        font-size: 1em;
+    }
+    </style>
+</head>
+<body>
+    <h1>Üye Ekle</h1>
+    <form action="/add" method="POST">
+        <input type="text" name="name" placeholder="Ad Soyad" required><br>
+        <input type="email" name="email" placeholder="E-posta"><br>
+        <input type="text" name="phone" placeholder="Telefon"><br>
+        <input type="date" name="birth_date" placeholder="Doğum Tarihi"><br>
+        <input type="number" step="0.01" name="height" placeholder="Boy (cm)"><br>
+        <input type="number" step="0.01" name="weight" placeholder="Kilo (kg)"><br>
+        <input type="text" name="belt_level" placeholder="Kuşak Seviyesi"><br>
+        <input type="text" name="weight_category" placeholder="Yarışma Sikleti"><br>
+        <input type="text" name="parent_name" placeholder="Veli Adı Soyadı"><br>
+        <input type="text" name="parent_phone" placeholder="Veli Telefonu"><br>
+        <input type="email" name="parent_email" placeholder="Veli Email"><br>
+        <input type="date" name="registration_date" placeholder="Kayıt Tarihi"><br>
+
+        <button type="submit">Kaydet</button>
+    </form>
+
+    <h2>Üye Listesi</h2>
+    <ul>
+    {% for member in members %}
+        <li>
+            {{ member['name'] }} - {{ member['email'] }}
+            <form action="/delete_member/{{ member['id'] }}" method="POST" style="display:inline;">
+                <button type="submit">Sil</button>
+            </form>
+            <a href="/edit_member/{{ member['id'] }}">Düzenle</a>
+        </li>
+    {% endfor %}
+</ul>
+</body>
+</html>

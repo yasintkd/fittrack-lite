@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Üye Arama</title>
+
+    <style>
+    body {
+        font-family: sans-serif;
+        padding: 12px;
+        margin: 0;
+        background-color: #f9f9f9;
+    }
+
+    h1, h2, h3 {
+        font-size: 1.2em;
+        margin-top: 20px;
+    }
+
+    ul {
+        padding-left: 20px;
+    }
+
+    li {
+        margin-bottom: 10px;
+        line-height: 1.4;
+    }
+
+    a {
+        display: inline-block;
+        margin-right: 10px;
+        color: #0077cc;
+        text-decoration: none;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+    button {
+        padding: 8px 12px;
+        font-size: 1em;
+        margin-top: 10px;
+    }
+
+    input, textarea, select {
+        width: 100%;
+        max-width: 400px;
+        padding: 8px;
+        margin-bottom: 12px;
+        font-size: 1em;
+    }
+    </style>
+</head>
+<body>
+    <h1>Üye Arama</h1>
+    <form method="GET" action="/search_members">
+    <input type="text" name="query" placeholder="Öğrenci adı girin">
+    <button type="submit">Ara</button>
+</form>
+
+<ul>
+    {% for member in members %}
+        <li>
+            <a href="/member/{{ member['id'] }}">{{ member['name'] }}</a> - {{ member['email'] }} - {{ member['phone'] }}
+        </li>
+    {% endfor %}
+</ul>
+
+    <h2>Sonuçlar</h2>
+    <ul>
+        {% for member in members %}
+            <li>{{ member['name'] }} - {{ member['email'] }} - {{ member['phone'] }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
